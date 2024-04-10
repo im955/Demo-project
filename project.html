@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes Management System</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+     .main{
+        width: 100%;
+        background-color: #FB5E65;
+        height: 50px;
+        
+    }
+    
+  
+    .btn{
+        background-color: #FB5E65;
+    }
+    .btn:hover{
+        background-color: #ca7b7f;
+    }
+    .card-header{
+        background-color: #FB5E65;
+        color: white;
+      
+    }
+    .card-body{
+        
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        
+    }
+   
+.card:hover{
+  margin-top: 10px;
+}
+.card{
+        animation: fadeIn 3s;
+    }
+    @keyframes fadeIn {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+            
+        
+    }
+    
+    .card {
+        -webkit-animation: moving 5s ease-in-out;
+        animation: moving 1s ease-in-out;
+    
+    }
+    @keyframes moving {
+        from {transform: translateY(100px);}
+        to {transform: translateY(0px);}
+    }
+
+  </style>
+</head>
+<body>
+  
+
+    
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+             Current Blood Sugar Level
+          </div>
+          <div class="card-body">
+            <p id="currentBloodSugar">Blood Sugar: <span id="bloodSugarValue"></span></p>
+            <p id="timestamp">Timestamp: <span id="timestampValue"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+             Calculate Bolus
+          </div>
+          <div class="card-body">
+            <form id="bolusForm">
+              <div class="form-group">
+                <label for="carbInput">Carbohydrates (grams):</label>
+                <input type="number" class="form-control" id="carbInput" required>
+              </div>
+              <div class="form-group">
+                <label for="insulinInput">Insulin Sensitivity Factor (ISF):</label>
+                <input type="number" class="form-control" id="insulinInput" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Calculate</button>
+            </form>
+            <div id="bolusResult" class="mt-3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+             Settings
+          </div>
+          <div class="card-body">
+            <form id="settingsForm">
+              <div class="form-group">
+                <label for="checkbox1">Option 1</label>
+                <input type="checkbox" id="checkbox1" class="form-check">
+              </div>
+              <div class="form-group">
+                <label for="dropdown">Dropdown:</label>
+                <select class="form-control" id="dropdown">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inputBox">Input Box:</label>
+                <input type="text" class="form-control" id="inputBox">
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+
+ 
+
+  <!-- Custom JavaScript -->
+  <script>
+    // Sample JavaScript for handling bolus calculation
+    document.getElementById('bolusForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var carbInput = parseFloat(document.getElementById('carbInput').value);
+      var insulinInput = parseFloat(document.getElementById('insulinInput').value);
+      var bolusResult = carbInput / insulinInput;
+      document.getElementById('bolusResult').innerHTML = "Bolus: " + bolusResult.toFixed(2) + " units";
+    });
+  </script>
+</body>
+</html>
